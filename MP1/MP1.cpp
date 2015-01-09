@@ -2,7 +2,7 @@
 1. In the main, ask the user to enter their name. By name, ask for 2 numbers, add the numbers together, and print the 2 numbers and the sum out.
 2. Now send the 2 numbers to a function, multiply the numbers, and return the number back to the main. Print the 2 numbers, the sum, and the product out. Yes, they should print the sum out again.
 3. Now send an empty String array of 100 entities to a function and read in a file of words(file contains less than 100 words). In the main, print all the words out and only the words.
-4. Call a function and run a sort.You choose the sort to use(I would reuse code). Print the sorted array out in the main.
+4. Call a function and run a sort.You choose the sort to use (I would reuse code). Print the sorted array out in the main.
 5. Have them then create a vector and do the same thing as 3 and 4 above. Tell them this allows them to compare Vector to regular arrays.
 */
 
@@ -35,7 +35,31 @@ int readInArray(string inWords[])
 	return i;
 }
 
-void readInVector(vector<string> inWords)
+// Method to sort the array (insertion sort)
+void arraySort(string inWords[], int arraySize)
+{
+	for (int i = 1; i < arraySize; i++) {
+		string valueToSort = inWords[i];
+		int j = i;
+		while (j > 0 && inWords[j - 1].compare(valueToSort) > 0) {
+			// Swap the two words
+			string temp = inWords[j];
+			inWords[j] = inWords[j - 1];
+			inWords[j - 1] = temp;
+			j--;
+
+			// Print the progression line
+			for (int l = 0; l < arraySize; l++)
+			{
+				cout << inWords[l] << " ";
+			}
+			cout << "\n";
+		}
+	}
+	cout << "\n";
+}
+
+/*void readInVector(vector<string>* inWords)
 {
 	string line;
 	ifstream myFile("myFile.txt");
@@ -46,7 +70,7 @@ void readInVector(vector<string> inWords)
 		i++;
 	}
 	myFile.close();
-}
+}*/
 
 int main()
 {
@@ -73,17 +97,18 @@ int main()
 	{
 		cout << wordsArray[i] << "\n";
 	}
-	cout << "\n";
+	cout << "\n" << "Sorting the array:\n";
+	arraySort(wordsArray, numOfWordsArray);
 
 	cout << "Now we will create a vector and fill it with strings from a text file.\nThis will allow you compare arrays and vectors.\n";
 	vector<string> wordsVector;
 	wordsVector.reserve(100);
-	readInVector(wordsVector);
+	/*readInVector(wordsVector);
 	cout << wordsVector.size();
-	for (int i = 0; i < wordsVector.size(); i++)
+	for (int i = 0; i < 9; i++)
 	{
 		cout << wordsArray[i] << "\n";
-	}
+	}*/
 	cout << "\n";
 
 	system("PAUSE");
