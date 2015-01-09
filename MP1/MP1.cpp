@@ -29,6 +29,7 @@ int readInArray(string inWords[])
 	while (getline(myFile, line))
 	{
 		inWords[i] = line;
+		cout << inWords[i] << "\n";
 		i++;
 	}
 	myFile.close();
@@ -59,18 +60,45 @@ void arraySort(string inWords[], int arraySize)
 	cout << "\n";
 }
 
-/*void readInVector(vector<string>* inWords)
+void readInVector(vector<string>& inWords)
 {
 	string line;
 	ifstream myFile("myFile.txt");
 	int i = 0;
 	while (getline(myFile, line))
 	{
+		inWords.resize(i + 1);
 		inWords[i] = line;
+		cout << inWords[i] << "\n";
 		i++;
 	}
 	myFile.close();
-}*/
+	cout << "\n";
+}
+
+// Method to sort the vector (insertion sort)
+void vectorSort(vector<string>& inWords)
+{
+	for (int i = 1; i < inWords.size(); i++) {
+		string valueToSort = inWords[i];
+		int j = i;
+		while (j > 0 && inWords[j - 1].compare(valueToSort) > 0) {
+			// Swap the two words
+			string temp = inWords[j];
+			inWords[j] = inWords[j - 1];
+			inWords[j - 1] = temp;
+			j--;
+
+			// Print the progression line
+			for (int l = 0; l < inWords.size(); l++)
+			{
+				cout << inWords[l] << " ";
+			}
+			cout << "\n";
+		}
+	}
+	cout << "\n";
+}
 
 int main()
 {
@@ -93,22 +121,14 @@ int main()
 	cout << "Now we will create an array and fill it with strings from a text file.\n";
 	string wordsArray[100];
 	int numOfWordsArray = readInArray(wordsArray);
-	for (int i = 0; i < numOfWordsArray; i++)
-	{
-		cout << wordsArray[i] << "\n";
-	}
 	cout << "\n" << "Sorting the array:\n";
 	arraySort(wordsArray, numOfWordsArray);
 
 	cout << "Now we will create a vector and fill it with strings from a text file.\nThis will allow you compare arrays and vectors.\n";
-	vector<string> wordsVector;
-	wordsVector.reserve(100);
-	/*readInVector(wordsVector);
-	cout << wordsVector.size();
-	for (int i = 0; i < 9; i++)
-	{
-		cout << wordsArray[i] << "\n";
-	}*/
+	vector<string> wordsVector(1);
+	readInVector(wordsVector);
+	cout << "Sorting the vector:\n";
+	vectorSort(wordsVector);
 	cout << "\n";
 
 	system("PAUSE");
