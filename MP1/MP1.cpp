@@ -22,6 +22,7 @@ int multiplication(int inFirstNum, int inSecondNum)
 
 // http://www.cplusplus.com/forum/beginner/107573/
 int readInArray(string inWords[])
+// http://www.cplusplus.com/forum/beginner/107573/
 {
 	string line;
 	ifstream myFile("myFile.txt");
@@ -29,7 +30,6 @@ int readInArray(string inWords[])
 	while (getline(myFile, line))
 	{
 		inWords[i] = line;
-		cout << inWords[i] << "\n";
 		i++;
 	}
 	myFile.close();
@@ -48,13 +48,6 @@ void arraySort(string inWords[], int arraySize)
 			inWords[j] = inWords[j - 1];
 			inWords[j - 1] = temp;
 			j--;
-
-			// Print the progression line
-			for (int l = 0; l < arraySize; l++)
-			{
-				cout << inWords[l] << " ";
-			}
-			cout << "\n";
 		}
 	}
 	cout << "\n";
@@ -69,7 +62,6 @@ void readInVector(vector<string>& inWords)
 	{
 		inWords.resize(i + 1);
 		inWords[i] = line;
-		cout << inWords[i] << "\n";
 		i++;
 	}
 	myFile.close();
@@ -88,13 +80,6 @@ void vectorSort(vector<string>& inWords)
 			inWords[j] = inWords[j - 1];
 			inWords[j - 1] = temp;
 			j--;
-
-			// Print the progression line
-			for (int l = 0; l < inWords.size(); l++)
-			{
-				cout << inWords[l] << " ";
-			}
-			cout << "\n";
 		}
 	}
 	cout << "\n";
@@ -112,24 +97,46 @@ int main()
 	cout << (name + ", please enter another number: ");
 	int secondNum;
 	cin >> secondNum;
+	cout << "\n";
 
 	int sum = firstNum + secondNum;
 	cout << firstNum << " + " << secondNum << " = " << sum << "\n";
-	cout << firstNum << " * " << secondNum << " = " << multiplication(firstNum, secondNum);
-	cout << "\n" << "\n";
+	cout << "Number 1: " << firstNum << "\n";
+	cout << "Number 2: " << secondNum << "\n";
+	cout << "Sum: " << sum << "\n";
+	cout << "Product: " << multiplication(firstNum, secondNum) << "\n\n";
 
 	cout << "Now we will create an array and fill it with strings from a text file.\n";
 	string wordsArray[100];
 	int numOfWordsArray = readInArray(wordsArray);
-	cout << "\n" << "Sorting the array:\n";
+	for (int i = 0; i < numOfWordsArray; i++)
+	{
+		cout << wordsArray[i] << "\n";
+	}
+	cout << "\n" << "Sorting the array:";
 	arraySort(wordsArray, numOfWordsArray);
+	for (int i = 0; i < numOfWordsArray; i++)
+	{
+		cout << wordsArray[i] << " ";
+	}
+	cout << "\n";
 
-	cout << "Now we will create a vector and fill it with strings from a text file.\nThis will allow you compare arrays and vectors.\n";
+	cout << "-------------------------------------------------\n";
+
+	cout << "Now we will create a vector and fill it with strings from a text file.\nThis will allow you compare arrays and vectors.";
 	vector<string> wordsVector(1);
 	readInVector(wordsVector);
-	cout << "Sorting the vector:\n";
+	for (unsigned int i = 0; i < wordsVector.size(); i++)
+	{
+		cout << wordsVector[i] << "\n";
+	}
+	cout << "\nSorting the vector:";
 	vectorSort(wordsVector);
-	cout << "\n";
+	for (int i = 0; i < wordsVector.size(); i++)
+	{
+		cout << wordsVector[i] << " ";
+	}
+	cout << "\n\n";
 
 	system("PAUSE");
 	return 0;
